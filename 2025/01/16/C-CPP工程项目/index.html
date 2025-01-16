@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C/C++工程项目 | 文野</title><meta name="author" content="wenye"><meta name="copyright" content="wenye"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C&#x2F;C++工程项目 通常一个项目难以通过单个文件完成，使用多个文件进行代码编写可以帮助组织起复杂的代码结构，组织一个工程项目是一个困难的过程。 编译过程 首先回顾C语言中可执行文件的编译过程， 预处理 源代码首先通过预处理操作，将那些预处理指令（以#开头的指令）进行文本替换，并将注释去掉，最终生成一个不包含预处理指令的代码文件（#pragma将会保留），这个文件在Windows上是一个.i文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++工程项目">
+<meta property="og:url" content="https://wenye01.github.io/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="文野">
+<meta property="og:description" content="C&#x2F;C++工程项目 通常一个项目难以通过单个文件完成，使用多个文件进行代码编写可以帮助组织起复杂的代码结构，组织一个工程项目是一个困难的过程。 编译过程 首先回顾C语言中可执行文件的编译过程， 预处理 源代码首先通过预处理操作，将那些预处理指令（以#开头的指令）进行文本替换，并将注释去掉，最终生成一个不包含预处理指令的代码文件（#pragma将会保留），这个文件在Windows上是一个.i文件。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wenye01.github.io/img/profile.jpg">
+<meta property="article:published_time" content="2025-01-16T14:04:16.000Z">
+<meta property="article:modified_time" content="2025-01-16T16:36:35.080Z">
+<meta property="article:author" content="wenye">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wenye01.github.io/img/profile.jpg"><link rel="shortcut icon" href="/img/profile.jpg"><link rel="canonical" href="https://wenye01.github.io/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C/C++工程项目',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/LastRingPortrait_Cassini_4472.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/profile.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/LastRingPortrait_Cassini_4472.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">文野</span></a><a class="nav-page-title" href="/"><span class="site-name">C/C++工程项目</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">C/C++工程项目</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-16T14:04:16.000Z" title="发表于 2025-01-16 22:04:16">2025-01-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-16T16:36:35.080Z" title="更新于 2025-01-17 00:36:35">2025-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>C/C++工程项目</h1>
+<p>通常一个项目难以通过单个文件完成，使用多个文件进行代码编写可以帮助组织起复杂的代码结构，组织一个工程项目是一个困难的过程。</p>
+<h2 id="编译过程">编译过程</h2>
+<p>首先回顾C语言中可执行文件的编译过程，</p>
+<h3 id="预处理">预处理</h3>
+<p>源代码首先通过预处理操作，将那些预处理指令（以#开头的指令）进行文本替换，并将注释去掉，最终生成一个不包含预处理指令的代码文件（#pragma将会保留），这个文件在Windows上是一个.i文件。</p>
+<h3 id="编译">编译</h3>
+<p>随后将调用编译器对.i文件进行编译，将代码转换为汇编指令，该文件通常是.s后缀，注意编译的对象编译单元，即那些经过预处理后的.c/.cpp文件，而头文件是不是一个编译单元。</p>
+<h3 id="汇编">汇编</h3>
+<p>汇编指令随后会由汇编器（而不是编译器）进行汇编，转换为二进制（/十六进制）的机器指令，生成.o（.obj）文件，汇编的过程和目标机器的指令集和操作系统有关。</p>
+<h3 id="链接">链接</h3>
+<p>此时生成的机器指令还包括一些未知的函数，也就是写代码时引用的那些库函数，这些函数的具体执行过程存放在链接库中，链接器将会把链接库和和汇编成的.o文件进行链接，生成可执行文件，链接的类型分为了静态链接和动态链接。</p>
+<h2 id="工程分类与链接">工程分类与链接</h2>
+<p>C/C++工程大致可以分为两类：<strong>应用程序</strong>和<strong>链接库</strong></p>
+<p>应用程序是那些可以直接运行的软件，比如初学C语言时用到的控制台应用程序，在Windows平台中是那些.exe文件。</p>
+<p>链接库是那些封装起来的，提供给应用程序使用的东西，比如.lib，.dll文件，在编译过程中将会链接到应用程序上，或静态链接或动态链接。</p>
+<p>大部分工程的目的是编写一个应用程序，其编译过程中的许多部分在C语言学习中会比较熟悉，而链接的部分很少接触到，接下来将会给出一个链接的例子。</p>
+<p>在最简单的HelloWorld程序中使用到了printf()函数，这个函数需要引用标准库stdio.h，在Visual Studio中可以右键查找该函数的定义，此时会找到这串代码</p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/printf_code.png" alt></p>
+<p>而printf()函数的实现却没有，因为其实现被放到了链接库ucrtbased.dll（windows平台）中，在Visual Studio中运行如下代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello,World&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在输出窗口中选择输出来源为 调试 将会出现如下提示</p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/debug_output.png" alt></p>
+<p>其中就有ucrtbased.dll被加载到exe程序中。</p>
+<p>这是exe程序动态链接到了ucrtbased.dll文件，如果修改项目配置，在Visual Studio中选择解决方案右键进入属性，在\配置属性\链接器\输入中找到“忽略所有默认库”，选择为是（/NODEFAULTLIB），此时模拟了链接器未工作的情况，然后重新生成，将会输出以下链接错误</p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/link_error.png" alt></p>
+<p>此时最简单的HelloWorld程序也无法生成成功。</p>
+<h2 id="工程配置">工程配置</h2>
+<p>对于一个工程，以下配置几乎是必须的（名称为Visual Studio中的说法）：</p>
+<p><strong>目标CPU架构</strong></p>
+<ul>
+<li>
+<p>x86</p>
+</li>
+<li>
+<p>x64</p>
+</li>
+<li>
+<p>arm</p>
+</li>
+</ul>
+<p><strong>包含目录</strong></p>
+<p>即头文件目录，在Visual Studio中分为了包含目录，外部包含目录，附加包含目录，含义类似，第三方库通常会包含一些头文件，使用这个以便于在项目中#include头文件</p>
+<p><strong>库文件目录</strong></p>
+<p>即链接库的目录，大部分第三方库除了头文件还需要配置lib文件目录才可以正常使用。</p>
+<p><strong>附加依赖项</strong></p>
+<p>链接库的名字，Visual Studio将会在库文件目录中自动查找这些文件。</p>
+<p><strong>预处理宏</strong></p>
+<p>编译开始时为项目添加的全局宏，如Visual Studio自动生成的项目中，会在Debug模式，生成应用程序时，默认添加_DEBUG，_CONSOLE两个宏，在Release模式中添加NDEBUG，_CONSOLE两个宏，在解决方案属性中\配置属性\C/C++\预处理器 中可以找到，结合#ifdef可以提供一些特定功能。</p>
+<p><strong>编译选项</strong></p>
+<p>提供一些编译功能，如编译优化，调试运行等。</p>
+<h2 id="工程调试">工程调试</h2>
+<p>任何人编写工程代码都不可能一次编译运行成功，调试对于工程是不可或缺的，对于现代IDE而言，语法错误无需编译即可报出，但是更为常见的错误是那些逻辑错误，学会查看错误报告并使用调试工具进行调试是十分重要的，对于新手而言最常见的是恐惧查看错误报告。</p>
+<h3 id="链接错误和语法错误">链接错误和语法错误</h3>
+<p>链接错误从名字就可以看出来，是在链接过程发生的错误，发生这种错误的时候还来不及进入调试工具，程序无法运行。</p>
+<p>最为常见的链接错误是error LINK 2019 函数“function*”中引用的未解析的外部符号“*<em>symbol</em>”，发生原因一般是链接库没有正确链接上，需要先查看报错的函数或变量，也就是 *symbol，找到其对应的第三方库，将其重新链接。</p>
+<p>语法错误通常很好解决，但在C++中有一类错误很难寻找，即当使用C++标准库的容器时，会发生模板错误，发生时会报一串就像乱码的错误，并在命令行输出很长的一段话，明明自己的代码只有不到十行，报错行数却在几百行，就像下图一样，</p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/templte_error1.png" alt></p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/templte_error2.png" alt></p>
+<p>这种错误是由于C++标准容器使用了模板的技术，该技术简而言之是通过代码生成代码，即预先写出生成代码的规则，在编译时根据规则自动生成代码，然后再进行编译，由于在编译前会生成额外的代码，导致编译器看到的代码比我们写的更多，报错行数是根据模板技术生成后的代码显示的，自然报错位置不多，并且由于生成的代码并不存在于我们编写的代码上，也不会对其进行显示，此时编译器虽然知道生成的代码发生了错误，但这是模板代码发生的错误，并不知道发生的具体原因，只能将模板生成的步骤全部显示出来，即上面第二张图表示的，</p>
+<p>此时查找错误可以通过报错文件，找到发生错误的容器，再寻找最近编写的关于这个容器的代码，如下图报错的代码图中的<code>std::unordered_map</code>部分</p>
+<p><img src="/2025/01/16/C-CPP%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE/unordered_map.png" alt></p>
+<p>报错原因是unordered_map需要计算哈希值，但并不支持计算std::vector<int>类型的哈希值。</int></p>
+<h3 id="调试工具">调试工具</h3>
+<p>C/C++项目一般使用GDB程序进行调试，在IDE中也集成了GDB的调试功能，可以方便的可视化调试，调试时首先需要在Debug模式下，Release模式下会对代码进行优化，使生成的代码并不是原来编写的代码。</p>
+<p>对于Visual Studio的调试工具使用，推荐学习Microsotf的官方文档<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/visualstudio/debugger/">调试器文档 - Visual Studio (Windows) | Microsoft Learn</a>，对于不同的IDE，调试工具的位置不尽相同，但调试方法都类似，无外乎中断程序运行，查看当前内存状况（如变量和调用堆栈），检查运行情况。</p>
+<p>编写代码中遇到的错误千奇百怪，通过调试工具也无法完美去除所有错误，调试过程也十分枯燥，常常一个bug改大半天，但成功修复bug的成就感也无与伦比，调试工具和累积的Debug经验将是你调试的重要依靠，但也需要他人的帮助，在<a target="_blank" rel="noopener" href="https://stackoverflow.com/">StackOverflow</a>上搜索并提问可以帮助你尽快解决问题，但耐心永远是最重要的。</p>
+</article><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/profile.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/12/30/NES-FC-%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%AE%9E%E7%8E%B0-%E5%89%8D%E8%A8%80/" title="NES(FC)模拟器实现-前言"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">NES(FC)模拟器实现-前言</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">wenye</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wenye01"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:wenye_01@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/img/qrcode_qq.jpg" target="_blank" title="QQ"><i class="far fa-comment" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">C&#x2F;C++工程项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">编译过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96"><span class="toc-number">1.1.3.</span> <span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E5%88%86%E7%B1%BB%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">工程分类与链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">工程配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E8%B0%83%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">工程调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E9%94%99%E8%AF%AF%E5%92%8C%E8%AF%AD%E6%B3%95%E9%94%99%E8%AF%AF"><span class="toc-number">1.4.1.</span> <span class="toc-text">链接错误和语法错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.4.2.</span> <span class="toc-text">调试工具</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By wenye</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="60198" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
